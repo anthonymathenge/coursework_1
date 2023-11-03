@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use \App\Models\Comment;
+
 
 class CommentsTableSeeder extends Seeder
 {
@@ -16,7 +18,7 @@ class CommentsTableSeeder extends Seeder
         $c = new Comment;
         $c->profile_id = 1;
         $c->post_id = 1;
-        $c->text= "This is a sample comment";
+        $c->content= "This is a sample comment";
         $c->save();
 
 
