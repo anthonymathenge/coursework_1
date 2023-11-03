@@ -21,6 +21,8 @@ class PostsTableSeeder extends Seeder
         $p->content = "this is Sample Post content";
         $p->save();
 
+        Post::factory(6)->create();
+
 
     }
 }

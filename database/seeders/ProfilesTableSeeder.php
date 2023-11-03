@@ -19,5 +19,7 @@ class ProfilesTableSeeder extends Seeder
         $u->email = "John@gmail.com";
         $u->password = "password";
         $u->save();
+
+        Profile::factory(5)->create();
     }
 }

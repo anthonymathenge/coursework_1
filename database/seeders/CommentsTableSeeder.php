@@ -21,6 +21,8 @@ class CommentsTableSeeder extends Seeder
         $c->content= "This is a sample comment";
         $c->save();
 
+        Comment::factory(10)->create();
+
 
     }
 }
