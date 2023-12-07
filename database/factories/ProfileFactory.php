@@ -18,8 +18,8 @@ class ProfileFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail,
-            'password' => 'password',
+            'email' => fake()->unique()->safeEmail(),
+            'password' =>  bcrypt('password'),
             //
         ];
     }

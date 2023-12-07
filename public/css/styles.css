@@ -1,0 +1,72 @@
+/* Add your global styles here */
+
+body {
+  padding-top: 56px; /* Adjust the top padding based on your navigation bar height */
+}
+.navbar {
+  padding: 0.5rem 1rem; /* Adjust the padding as needed */
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding-top: 56px; /* Adjust the top padding based on your navigation bar height */
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  background-color: #343a40; /* Dark blue background color */
+  color: #fff; /* Text color for the sidebar */
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 56px; /* Adjust the top spacing based on your navigation bar height */
+}
+
+.sidebar .nav-link {
+  color: #fff; /* Text color for sidebar links */
+}
+
+.sidebar .nav-link.active {
+  font-weight: bold;
+  color: #007bff; /* Active link text color */
+}
+
+.sidebar .nav-link:hover {
+  color: #007bff; /* Hovered link text color */
+}
+
+/* Adjust the main content area based on your layout */
+main {
+  padding: 15px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .sidebar {
+      position: static;
+      height: auto;
+      width: 100%;
+      padding-top: 15px; /* Adjust the top padding for smaller screens */
+  }
+
+  .sidebar-sticky {
+      position: relative;
+      top: 0;
+  }
+
+  body {
+      padding-top: 0;
+  }
+
+  main {
+      padding: 15px;
+  }
+  .navbar {
+    position: static;
+    width: 100%;
+    z-index: 1000;
+}
+}
