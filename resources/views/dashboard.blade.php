@@ -39,11 +39,30 @@
                                     </button>
                                     <span class="like-count" data-comment-id="{{ $comment->id }}" d
                                     ata-initial-count="{{ $comment->likes->count() }}">0</span> Likes
+                                    @if($comment->user_id == auth()->id())
+                                    <form action="{{ route('comment.destroy', $comment) }}" method="post" 
+                                    onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                            <span style="font-size: 20px;">&#128465;</span>
+                                        </button>
+                                    </form>
+                                    @endif
                                     </p>
                                 </div>
                             @endforeach
                         @else
                             <p>hmmmm... It's quiet here</p>
+                        @endif
+                        <!-- Delete post button -->
+                        @if($post->user_id == auth()->id())
+                            <form action="{{ route('post.destroy', $post) }}" method="post"
+                            onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Delete Post</button>
+                            </form>
                         @endif
                         <form class="comment-form">
                         @csrf
@@ -56,9 +75,6 @@
             <hr>
         @endif
     @endforeach
-<!-- Include jQuery before your custom script x                            <span class="heart">❤️</span>                                
- -->
-
 @endsection
 
 

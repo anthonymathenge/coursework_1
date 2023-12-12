@@ -45,6 +45,20 @@ class CommentController extends Controller
 
         return response()->json(['message' => 'Comment added successfully.']);
     }
+
+    public function destroy(Comment $comment)
+{
+    // Check if the authenticated user is the owner of the comment
+    if ($comment->user_id == auth()->id()) {
+        // Delete the comment
+        $comment->delete();
+
+        return redirect()->back()->with('success', 'Comment deleted successfully.');
+    }
+
+    return redirect()->back()->with('error', 'Unauthorized action.');
+}
+
 }
 
 

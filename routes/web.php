@@ -56,6 +56,11 @@ Route::middleware('auth')->group(function () {
     // routes/web.php
 
     Route::post('/comment/post/{post}', [CommentController::class, 'store'])->name('comment.store');
+    
+    Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+    Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+
+
 
 
 

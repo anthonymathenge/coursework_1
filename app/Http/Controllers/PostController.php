@@ -40,5 +40,18 @@ class PostController extends Controller
 
         return redirect()->route('posts.index')->with('success', 'Post created successfully.');
     }
+    public function destroy(Post $post){
+    // Check if the authenticated user is the owner of the post
+    if ($post->user_id == auth()->id()) {
+        // Delete the post and its associated comments
+        $post->comments()->delete();
+        $post->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Post and comments deleted successfully.');
+    }
+
+    return redirect()->back()->with('error', 'Unauthorized action.');
+}
+
 }
 
