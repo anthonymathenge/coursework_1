@@ -15,11 +15,11 @@ class CommentsTableSeeder extends Seeder
     public function run(): void
     {
         //
-        $c = new Comment;
-        $c->profile_id = 1;
-        $c->post_id = 1;
-        $c->content= "This is a sample comment";
-        $c->save();
+        $comment  = new Comment;
+        $comment ->user_id = 1;
+        $comment->post_id = 1;
+        $comment->content= "This is a sample comment";
+        $comment->save();
 
         Comment::factory(10)->create();
 

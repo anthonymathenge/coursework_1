@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use \App\Models\Profile;
+use \App\Models\User;
 use \App\Models\Post;
 
 
@@ -21,9 +21,9 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'profile_id' => Profile::factory(),
+            'user_id' => User::factory(),
             'post_id' => Post::factory(),
-            'content' => fake()->paragraph,
+            'content' => $this ->faker->paragraph,
             
         ];
     }

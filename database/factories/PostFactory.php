@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use \App\Models\Profile;
+use \App\Models\User;
 
 
 /**
@@ -19,7 +19,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'profile_id' => Profile::factory(),
+            'user_id' => User::factory(),
             'title' => fake()->sentence,
             'content' => fake()->paragraph,
         ];

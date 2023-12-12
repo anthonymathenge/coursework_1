@@ -15,11 +15,10 @@ class ProfilesTableSeeder extends Seeder
     {
         //
         $u=new Profile;
-        $u->name = "John Doe";
+        $u->name = "John Do";
         $u->email = "John@gmail.com";
         $u->password = bcrypt("password");
         $u->save();
 
-       // Profile::factory(5)->create();
     }
 }

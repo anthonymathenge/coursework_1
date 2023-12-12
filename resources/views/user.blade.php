@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Profile')
+@section('title', 'User')
 
 @section('content')
     <div class="container">
         <h2>User Information</h2>
-        @if ($profile)
-            <p>Name: {{ $profile->name }}</p>
-            <p>Email: {{ $profile->email }}</p>
+        @if ($user)
+            <p>Name: {{ $user->name }}</p>
+            <p>Email: {{ $user->email }}</p>
             <!-- Add additional fields as needed -->
         @else
             <p>No profile found.</p>
