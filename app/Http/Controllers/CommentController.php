@@ -59,6 +59,35 @@ class CommentController extends Controller
     return redirect()->back()->with('error', 'Unauthorized action.');
 }
 
+public function edit(Comment $comment)
+{
+    // Check if the authenticated user is the owner of the comment
+    if ($comment->user_id == auth()->id()) {
+        return view('commentedit', compact('comment'));
+    }
+
+    return redirect()->back()->with('error', 'Unauthorized action.');
+}
+
+public function update(Request $request, Comment $comment)
+{
+    // Check if the authenticated user is the owner of the comment
+    if ($comment->user_id == auth()->id()) {
+        $request->validate([
+            'content' => 'required',
+        ]);
+
+        $comment->update([
+            'content' => $request->input('content'),
+        ]);
+
+        return redirect()->route('dashboard')->with('success', 'Comment updated successfully.');
+    }
+
+    return redirect()->back()->with('error', 'Unauthorized action.');
+}
+
+
 }
 
 

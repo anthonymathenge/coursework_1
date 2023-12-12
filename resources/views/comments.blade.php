@@ -22,4 +22,14 @@
                 @endforeach
 
     </div>
+    <div class="container">
+        <h1>Edit Comment</h1>
+        <form action="{{ route('comment.update', $comment) }}" method="post">
+            @csrf
+            @method('PUT')
+            <label for="content">Content:</label>
+            <textarea name="content" required>{{ $comment->content }}</textarea>
+            <button type="submit">Update Comment</button>
+        </form>
+    </div>
 @endsection

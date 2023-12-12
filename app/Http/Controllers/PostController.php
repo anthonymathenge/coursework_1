@@ -53,5 +53,36 @@ class PostController extends Controller
     return redirect()->back()->with('error', 'Unauthorized action.');
 }
 
+public function edit(Post $post)
+{
+    // Check if the authenticated user is the owner of the post
+    if ($post->user_id == auth()->id()) {
+        return view('postedit', compact('post'));
+    }
+
+    return redirect()->back()->with('error', 'Unauthorized action.');
+}
+
+public function update(Request $request, Post $post)
+{
+    // Check if the authenticated user is the owner of the post
+    if ($post->user_id == auth()->id()) {
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        $post->update([
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+        ]);
+
+        return redirect()->route('dashboard')->with('success', 'Post updated successfully.');
+    }
+
+    return redirect()->back()->with('error', 'Unauthorized action.');
+}
+
+
 }
 

@@ -25,7 +25,8 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard') }}">                                Dashboard
+                        <a class="nav-link" href="{{ route('dashboard') }}">
+                             Dashboard
                             </a>
                         </li>
                         <li class="nav-item">

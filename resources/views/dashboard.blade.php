@@ -14,7 +14,6 @@
                     <div class="post-container">
                         <p>{{ $post->title }} : {{ $post->content }}</p>
 
-
                         <div class="like-container">
                         <!-- Add a data attribute to store the initial liked status -->
                         <button class="like-post-btn" data-post-id="{{ $post->id }}" 
@@ -48,6 +47,7 @@
                                             <span style="font-size: 20px;">&#128465;</span>
                                         </button>
                                     </form>
+                                    <a href="{{ route('comment.edit', $comment) }}">Edit Comment</a>
                                     @endif
                                     </p>
                                 </div>
@@ -55,6 +55,11 @@
                         @else
                             <p>hmmmm... It's quiet here</p>
                         @endif
+                        <form class="comment-form">
+                        @csrf
+                        <textarea name="content" placeholder="Add a comment" required></textarea>
+                        <button type="submit" data-post-id="{{ $post->id }}">Comment</button>
+                        </form>
                         <!-- Delete post button -->
                         @if($post->user_id == auth()->id())
                             <form action="{{ route('post.destroy', $post) }}" method="post"
@@ -64,11 +69,10 @@
                                 <button type="submit">Delete Post</button>
                             </form>
                         @endif
-                        <form class="comment-form">
-                        @csrf
-                        <textarea name="content" placeholder="Add a comment" required></textarea>
-                        <button type="submit" data-post-id="{{ $post->id }}">Comment</button>
-                    </form>
+                        <!-- Edit post link -->
+                        @if($post->user_id == auth()->id())
+                            <a href="{{ route('posts.edit', $post) }}">Edit Post</a>
+                        @endif
                     </div>
                 @endforeach
             </div>

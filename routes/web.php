@@ -53,15 +53,18 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
 
-    // routes/web.php
+
 
     Route::post('/comment/post/{post}', [CommentController::class, 'store'])->name('comment.store');
     
     Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
     Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
 
+    Route::get('/post/{post}/edit', [PostController::class,'edit'])->name('posts.edit');
+    Route::put('/post/{post}', [PostController::class,'update'])->name('post.update');
 
-
+    Route::get('/comment/{comment}/edit', [CommentController::class,'edit'])->name('comment.edit');
+    Route::put('/comment/{comment}', [CommentController::class,'update'])->name('comment.update');
 
 
 });
