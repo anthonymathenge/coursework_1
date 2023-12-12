@@ -66,6 +66,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/comment/{comment}/edit', [CommentController::class,'edit'])->name('comment.edit');
     Route::put('/comment/{comment}', [CommentController::class,'update'])->name('comment.update');
 
+    // web.php
+    Route::get('/user/activity/likedposts', [UserController::class,'likedPosts'])->name('user.likedposts');
+    Route::get('/user/activity/likedcomments', [UserController::class,'likedComments'])->name('user.likedcomments');
+
+
 
 });
 

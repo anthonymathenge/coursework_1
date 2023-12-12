@@ -21,9 +21,9 @@
                          <span class="heart">❤️</span> 
                         </button>
 
-                        <span class="like-count" data-post-id="{{ $post->id }}" 
-                        data-initial-count="{{ $post->likes->count() }}">0</span> Likes
-                        </div>
+                        <span class="like-count" data-post-id="{{ $post->id }}" data-initial-count="{{ $post->likes->count() }}">
+                            {{ $post->likes->count() }}
+                        </span> Likes
 
                         <h4>Comments:</h4>
 
@@ -36,8 +36,9 @@
                                     data-initial-liked="{{ $comment->isLikedByAuthUser() ? 'true' : 'false' }}">
                                     <span class="heart">❤️</span>
                                     </button>
-                                    <span class="like-count" data-comment-id="{{ $comment->id }}" d
-                                    ata-initial-count="{{ $comment->likes->count() }}">0</span> Likes
+                                    <span class="like-count" data-post-id="{{ $post->id }}" data-initial-count="{{ $post->likes->count() }}">
+                                        {{ $post->likes->count() }}
+                                    </span> Likes
                                     @if($comment->user_id == auth()->id())
                                     <form action="{{ route('comment.destroy', $comment) }}" method="post" 
                                     onsubmit="return confirm('Are you sure you want to delete this comment?');">

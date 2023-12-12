@@ -30,10 +30,11 @@ $(document).ready(function() {
               dataType: 'json',
               success: function(response) {
                   // Update the like count in the UI
+                  var likeCountSpan = $('.like-count[data-post-id="' + postId + '"]');
                   likeCountSpan.text(response.count);
 
                   // Toggle the heart color
-                  heartIcon.toggleClass('liked');
+                  heartIcon.toggleClass('liked', response.isLiked);
 
                   // Handle success (e.g., show a notification)
                   alert(response.message);
@@ -68,10 +69,11 @@ $(document).ready(function() {
               dataType: 'json',
               success: function(response) {
                   // Update the like count in the UI
+                  var likeCountSpan = $('.like-count[data-post-id="' + postId + '"]');
                   likeCountSpan.text(response.count);
 
                   // Toggle the heart color
-                  heartIcon.toggleClass('liked');
+                  heartIcon.toggleClass('liked', response.isLiked);
 
                   // Handle success (e.g., show a notification)
                   alert(response.message);

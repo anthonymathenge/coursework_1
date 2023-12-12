@@ -59,5 +59,20 @@ class UserController extends Controller
 
         return redirect()->route('home')->with('status', 'account-deleted');
     }
+
+    public function likedPosts()
+    {
+        $likedPosts = auth()->user()->likedPosts;
+
+        return view('likedpost', compact('likedPosts'));
+    }
+
+    public function likedComments()
+    {
+        $likedComments = auth()->user()->likedComments;
+
+        return view('likedcomment', compact('likedComments'));
+    }
+
 }
 
