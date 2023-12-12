@@ -1,27 +1,38 @@
 @extends('layouts.app')
 
-@section('title', 'Posts')
-
 @section('content')
     <div class="container">
-        <h2>Post Creation</h2>
-        <p>new post title:</p>
-        <p>new comment:</p>
-        <!-- Include a form for creating new posts -->
-
-        <h2>Post Management</h2>
-        <!-- Display a list of user's posts with options to edit, delete, and view -->
-
-        <h2>Post Categories</h2>
-        <!-- Allow users to categorize their posts -->
-
-        <h2>Post Tags</h2>
-        <!-- Allow users to add tags to their posts -->
-
-        <h2>Post Comments</h2>
-        <!-- Allow users to comment on posts -->
-
-        <h2>Post Search</h2>
-        <!-- Add a search bar to search for posts based on keywords -->
+        <h1>Posts</h1>
+        <ul>
+            @foreach($posts as $post)
+                <li>
+                    {{ $post->title }}
+                    <button class="like-post" data-post-id="{{ $post->id }}">Like</button>
+                    <form action="{{ route('comments.store', ['post' => $post->id]) }}" method="post">
+                        @csrf
+                        <input type="text" name="body" placeholder="Your comment">
+                        <button type="submit">Comment</button>
+                    </form>
+                    <ul>
+                        @foreach($post->comments as $comment)
+                            <li>
+                                {{ $comment->content }}
+                                <button class="like-comment" data-comment-id="{{ $comment->id }}">Like</button>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+    <div class="container">
+        <h1>Create Post</h1>
+        <form action="{{ route('posts.store') }}" method="post">
+            @csrf
+            <label for="title">Title:</label>
+            <input type="text" name="title" required>
+            <button type="submit">Create Post</button>
+        </form>
     </div>
 @endsection
+

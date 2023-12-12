@@ -1,0 +1,9 @@
+/* Add this in your CSS file or in a <style> tag in your HTML */
+.fa-heart {
+  color: #333; /* Default color for the heart icon */
+  transition: color 0.3s ease; /* Add a smooth color transition effect */
+}
+
+.fa-heart.liked {
+  color: red; /* Color for the heart icon when liked */
+}

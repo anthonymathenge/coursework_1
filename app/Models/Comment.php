@@ -14,5 +14,18 @@ class Comment extends Model
     public function posts(){
         return $this->belongsTo(Post::class);
     }
-    
+     public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
+    }
+    public function isLikedByAuthUser()
+    {
+        $authUserId = auth()->id();
+
+        if ($authUserId) {
+            return $this->likes()->where('user_id', $authUserId)->exists();
+        }
+
+        return false;
+    }
 }

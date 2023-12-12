@@ -20,5 +20,11 @@ class ProfilesTableSeeder extends Seeder
         $u->password = bcrypt("password");
         $u->save();
 
+        $u=new Profile;
+        $u->name = "kim jong";
+        $u->email = "kim@gmail.com";
+        $u->password = bcrypt("password");
+        $u->save();
+
     }
 }

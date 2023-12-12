@@ -5,6 +5,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LikeController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -33,10 +35,14 @@ Route::middleware('auth')->group(function () {
  
     // Posts
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+    Route::post('/posts', [PostController::class, 'store'])->name('posts.store'); // Add this line
+    Route::post('/like/post/{post}', [LikeController::class, 'likePost'])->name('like.post');
     // Add more post routes (create, edit, delete) as needed
 
     // Comments
     Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
+    Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store'); // Add this line
+    Route::post('/like/comment/{comment}', [LikeController::class, 'likeComment'])->name('like.comment');
     // Add more comment routes (create, edit, delete) as needed
 
     // Settings

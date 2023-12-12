@@ -69,4 +69,11 @@ main {
     width: 100%;
     z-index: 1000;
 }
+/* Add styles for the heart icon and liked state */
+.like-post.liked i.fa-heart,
+.like-comment.liked i.fa-heart {
+    color: red; 
+}
+
+
 }
