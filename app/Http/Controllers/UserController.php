@@ -6,9 +6,17 @@ use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
 
 class UserController extends Controller
 {
+    public function show(User $user)
+    {
+        $user->load('posts.comments.user', 'posts.likes'); // Eager load relationships
+        
+        return view('show', compact('user'));
+    }
+    
     public function index()
     {
         $user = Auth::user();

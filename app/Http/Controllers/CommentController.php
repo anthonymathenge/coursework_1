@@ -43,7 +43,7 @@ class CommentController extends Controller
         // Associate the comment with the post
         $post->comments()->save($comment);
 
-        return redirect()->route('posts.index')->with('success', 'Comment added successfully.');
+        return response()->json(['message' => 'Comment added successfully.']);
     }
 }
 

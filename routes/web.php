@@ -49,6 +49,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // routes/web.php
+
+    Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
+
+    // routes/web.php
+
+    Route::post('/comment/post/{post}', [CommentController::class, 'store'])->name('comment.store');
+
+
 
 });
 
