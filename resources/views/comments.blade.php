@@ -19,6 +19,9 @@
                             </form>
                         </p>
                     </div>
+
+                    <a href="{{ route('comment.edit', $comment) }}">Edit Comment</a>
+
                 @endforeach
 
     </div>

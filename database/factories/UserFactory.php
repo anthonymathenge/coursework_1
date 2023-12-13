@@ -20,12 +20,15 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $name = $this->faker->name();
         return [
-            'name' => fake()->name(),
+            'name' => $name,
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
             'remember_token' => Str::random(10),
+            'avatarUrl' => $this->getAnimatedAvatarUrl($name),
+
         ];
     }
 
@@ -37,5 +40,13 @@ class UserFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);
+    }
+    private function getAnimatedAvatarUrl(string $name): string
+    {
+        $robohashUrl = 'https://robohash.org/';
+        $hash = md5($name);
+
+        // Use set parameter to specify the style of the animated avatar (e.g., set=set4)
+        return "{$robohashUrl}{$hash}.gif?set=set1 ";
     }
 }

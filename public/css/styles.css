@@ -34,8 +34,15 @@ body {
   color: #007bff; /* Active link text color */
 }
 
-.sidebar .nav-link:hover {
-  color: #007bff; /* Hovered link text color */
+.sidebar .nav-item {
+  transition: all .3s ease-in-out;  /* Grow the menu item on hover */
+}
+.sidebar .nav-item:hover {
+  transform: scale(1.6); /* Grow the menu item on hover */
+}
+
+.sidebar .nav-item:hover .nav-link {
+  color: #ffc107; /* Change the color on hover to yellow (you can adjust this) */
 }
 
 /* Adjust the main content area based on your layout */
@@ -68,11 +75,6 @@ main {
     position: static;
     width: 100%;
     z-index: 1000;
-}
-/* Add styles for the heart icon and liked state */
-.like-post.liked i.fa-heart,
-.like-comment.liked i.fa-heart {
-    color: red; 
 }
 
 

@@ -1,9 +1,37 @@
-/* Add this in your CSS file or in a <style> tag in your HTML */
-.fa-heart {
-  color: #333; /* Default color for the heart icon */
-  transition: color 0.3s ease; /* Add a smooth color transition effect */
+  /* Custom CSS for smaller heart icon and no background */
+  /* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+html,
+
+
+.card {
+    position: relative;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #d2d2dc;
+    border-radius: 11px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgb(249, 249, 250);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1);
+    box-shadow: 0px 0px 5px 0px rgb(161, 163, 164);
 }
 
-.fa-heart.liked {
-  color: red; /* Color for the heart icon when liked */
+.media img {
+    width: 60px;
+    height: 60px;
+}
+
+
+  .like-container button {
+    font-size: 12px; /* Adjust the font size as needed */
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
 }
