@@ -16,30 +16,7 @@ class PostController extends Controller
         return view('posts', compact('posts'));
     }
 
-    public function create()
-    {
-        // Display the form for creating new posts
-        return view('posts.create');
-    }
 
-    public function store(Request $request)
-    {
-        // Validate the request
-        $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required',
-        ]);
-
-        // Create a new post
-        $post = new Post();
-        $post->title = $request->input('title');
-        $post->content = $request->input('content');
-        $post->user_id = auth()->id(); // Associate the post with the authenticated user
-
-        $post->save();
-
-        return redirect()->route('posts.index')->with('success', 'Post created successfully.');
-    }
     public function destroy(Post $post){
     // Check if the authenticated user is the owner of the post
     if ($post->user_id == auth()->id()) {

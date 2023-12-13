@@ -7,10 +7,12 @@
     <div class="container mb-5 mt-5">
         @foreach($users as $user)
             @if($user->posts->count() > 0)
+            @foreach($user->posts as $post)
                 <div class="card">
+                
                     <div class="row">
+                    
                         <div class="col-md-12">
-                            @foreach($user->posts as $post)
                                 <div class="media mt-4">
                                 <img class="mr-3 rounded-circle" alt="User Avatar" src="{{ $post->user->avatarUrl }}" />
                                     <div class="media-body">
@@ -44,8 +46,6 @@
                                                     <textarea name="content" placeholder="Add a comment" required></textarea>
                                                     <button type="submit" data-post-id="{{ $post->id }}">Post</button>
                                                     </form>
-
-
                                             </div>
                                          </div>
                                         <!-- Edit post link -->
@@ -58,10 +58,10 @@
                                                 <div class="media-body">
                                                     <div class="row">
                                                         <div class="col-12 d-flex">
-                                                            <h5>{{ $comment->user->name }}</h5>
+                                                        <h5><a href="{{ route('user.show', $comment->user) }}">{{ $comment->user->name }}</a></h5>
                                                             <span>- {{ $comment->created_at->diffForHumans() }}</span>
                                                         </div>
-                                                    </div>                                                
+                                                    </div>
                                                     <p>{{ $comment->content }}</p>
 
                                                     <div class="like-container">
@@ -105,10 +105,13 @@
                                         @endif
                                     </div>
                                 </div>
-                            @endforeach
+                            
                         </div>
+                    
                     </div>
+                    
                 </div>
+                @endforeach
             @endif
         @endforeach
 
@@ -118,9 +121,6 @@
 
    
     </div>
-    <style>
-
-    </style>
 
 <script>
         document.addEventListener('DOMContentLoaded', function () {

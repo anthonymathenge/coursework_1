@@ -3,36 +3,59 @@
 @section('title', 'Comments')
 
 @section('content')
-    <div class="container">
-        <h2>My Comments</h2>
-        {{-- Display a list of user's comments with options to edit, delete, and view --}}
-                @foreach ($comments as $comment)
-                    <div class="comment">
-                        <p>{{ $comment->content }}
-                        <form action="{{ route('comment.destroy', $comment) }}" method="post" 
-                        onsubmit="return confirm('Are you sure you want to delete this comment?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" style="border: none; background: none; cursor: pointer;">
-                                    <span style="font-size: 20px;">&#128465;</span>
-                                </button>
-                            </form>
-                        </p>
+<h1 style="color: white;">Your Comments</h1>
+
+    <div class="container mb-5 mt-5">
+        @foreach ($comments as $comment)
+            <div class="card mb-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="media mt-3">
+                            <div class="media-body">
+                            <div class="row">
+                                <div class="col-12 d-flex">
+                                    <h5><a href="{{ route('user.show', $comment->user) }}">{{ $comment->user->name }}</a></h5>
+                                    <span>- {{ $comment->created_at->diffForHumans() }}</span>
+                                </div>
+                            </div>
+                            <p>{{ $comment->content }}</p>
+                                    <div class="col-12 d-flex">
+                                        
+                                        <form action="{{ route('comment.destroy', $comment) }}" method="post" 
+                                            onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                                <span style="font-size: 20px;">&#128465;</span>
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                    <div class="like-container">
+                                                    <button class="like-comment-btn" data-comment-id="{{ $comment->id }}"
+                                                        data-initial-liked="{{ $comment->isLikedByAuthUser() ? 'true' : 'false' }}">
+                                                        <span class="heart">❤️</span>
+                                                    </button>
+                                                    <span class="like-count" data-comment-id="{{ $comment->id }}" 
+                                                        data-initial-count="{{ $comment->likes->count() }}">
+                                                        {{ $comment->likes->count() }}
+                                                    </span> Likes
+                                                </div>
+
+                                <!-- Add any other comment details you want to display -->
+
+                                <!-- Edit button for comments -->
+                                <a href="{{ route('comment.edit', $comment) }}" class="edit-comment-btn">
+                                    Edit Comment
+                                </a>
+                                <!-- Add any other features for comments if needed -->
+                            </div>
+                        </div>
                     </div>
-
-                    <a href="{{ route('comment.edit', $comment) }}">Edit Comment</a>
-
-                @endforeach
-
-    </div>
-    <div class="container">
-        <h1>Edit Comment</h1>
-        <form action="{{ route('comment.update', $comment) }}" method="post">
-            @csrf
-            @method('PUT')
-            <label for="content">Content:</label>
-            <textarea name="content" required>{{ $comment->content }}</textarea>
-            <button type="submit">Update Comment</button>
-        </form>
+                </div>
+            </div>
+        @endforeach
     </div>
 @endsection
+
+

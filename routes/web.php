@@ -6,6 +6,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\NewPostController;
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -35,7 +37,6 @@ Route::middleware('auth')->group(function () {
  
     // Posts
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-    Route::post('/posts', [PostController::class, 'store'])->name('posts.store'); // Add this line
     Route::post('/like/post/{post}', [LikeController::class, 'likePost'])->name('like.post');
     // Add more post routes (create, edit, delete) as needed
 
@@ -69,6 +70,10 @@ Route::middleware('auth')->group(function () {
     // web.php
     Route::get('/user/activity/likedposts', [UserController::class,'likedPosts'])->name('user.likedposts');
     Route::get('/user/activity/likedcomments', [UserController::class,'likedComments'])->name('user.likedcomments');
+    
+    Route::get('/newpost', [NewPostController::class, 'create'])->name('newpost.create');
+    Route::post('/newpost', [NewPostController::class, 'store'])->name('newpost.store');
+
 
 
 

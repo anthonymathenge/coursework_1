@@ -1,33 +1,47 @@
 @extends('layouts.app')
 
+@section('title', 'Post')
+
 @section('content')
     <div class="container mt-5">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="col-12 d-flex align-items-center mb-2">
-                        </div>
-                        @foreach($posts as $post)
-                            <div class="card mb-4">
-                            <h1>Your Posts</h1>
-                                <div class="card-body">
+    <h1 class="text-white mb-4">Your Posts.</h1>
+        @foreach($posts as $post)
+            <div class="card mb-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="media mt-4">
+                            <img class="mr-3 rounded-circle" alt="User Avatar" src="{{ $post->user->avatarUrl }}" />
+                            <div class="media-body">
+                                <div class="row">
                                     <div class="col-8 d-flex">
-                                        <h5 class="card-title">{{ $post->title }}</h5>
-                                        <span class="ml-2">- {{ $post->created_at->diffForHumans() }}</span>
+                                        <h5><a href="{{ route('user.show', $post->user) }}">{{ $post->user->name }}</a></h5>
+                                        <span>- {{ $post->created_at->diffForHumans() }}</span>
                                     </div>
-                                    <p class="card-text">{{ $post->content }}</p>
+                                </div>
+                                <p>{{ $post->content }}</p>
 
-                                    <!-- Display comments for the current post -->
-                                    <h3 class="mt-4">Comments</h3>
+                                <!-- Like button for posts -->
+                                <div class="like-container">
+                                    <button class="like-post-btn" data-post-id="{{ $post->id }}" 
+                                        data-initial-liked="{{ $post->isLikedByAuthUser() ? 'true' : 'false' }}">
+                                        <span class="heart">❤️</span> 
+                                    </button>
+                                    <span class="like-count" data-post-id="{{ $post->id }}" 
+                                        data-initial-count="{{ $post->likes->count() }}">
+                                        {{ $post->likes->count() }}
+                                    </span> Likes
+                                    <!-- Edit post link -->
+                                    <a href="{{ route('posts.edit', $post) }}">Edit Post</a>
+
+                                    <!-- Nested Comments -->
                                     @foreach($post->comments as $comment)
                                         <div class="media mt-3">
                                             <a class="pr-3" href="#"><img class="rounded-circle" alt="User Avatar" src="{{ $comment->user->avatarUrl }}" /></a>
                                             <div class="media-body">
                                                 <div class="row">
-                                                    <div class="col-12 d-flex align-items-center">
-                                                        <h5>{{ $comment->user->name }}</h5>
-                                                        <span class="ml-2">- {{ $comment->created_at->diffForHumans() }}</span>
+                                                    <div class="col-12 d-flex">
+                                                    <h5><a href="{{ route('user.show', $comment->user) }}">{{ $comment->user->name }}</a></h5>
+                                                        <span>- {{ $comment->created_at->diffForHumans() }}</span>
                                                     </div>
                                                 </div>
                                                 <p>{{ $comment->content }}</p>
@@ -43,50 +57,42 @@
                                                     </span> Likes
                                                     <a href="{{ route('comment.edit', $comment) }}">Edit Comment</a>
                                                 </div>
+
+                                                <!-- Delete and Edit Comment Logic -->
+                                                @if($comment->user_id == auth()->id())
+                                                    <form action="{{ route('comment.destroy', $comment) }}" method="post" 
+                                                        onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                                            <span style="font-size: 20px;">&#128465;</span>
+                                                        </button>
+                                                    </form>
+                                                @endif
+
+                                                <!-- Delete post button -->
+
+                                                <!-- Add reply button if needed -->
                                             </div>
                                         </div>
                                     @endforeach
-
-                                    <!-- Edit Post Link -->
-                                    <a href="{{ route('posts.edit', $post) }}" class="btn btn-warning">Edit Post</a>
-
-                                    <!-- Delete Post Form -->
-                                    <form action="{{ route('post.destroy', $post) }}" method="post"
-                                        onsubmit="return confirm('Are you sure you want to delete this post?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete Post</button>
-                                    </form>
+                                    @if($post->user_id == auth()->id())
+                                        <form action="{{ route('post.destroy', $post) }}" method="post"
+                                            onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit">Delete Post</button>
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Create Post Form -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h1 class="mb-4">Create Post</h1>
-                        <form action="{{ route('posts.store') }}" method="post">
-                            @csrf
-                            <div class="form-group">
-                                <label for="title">Title:</label>
-                                <input type="text" class="form-control" name="title" required>
-                            </div>
-
-                            <!-- Add a textarea for post content -->
-                            <div class="form-group">
-                                <label for="content">Content:</label>
-                                <textarea class="form-control" name="content" rows="4" required></textarea>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Create Post</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 @endsection
+
+
+ 

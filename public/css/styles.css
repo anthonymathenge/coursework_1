@@ -1,12 +1,30 @@
 /* Add your global styles here */
-
+html {
+  padding: 0; /* Reset padding to remove unwanted white space */
+}
 body {
-  padding-top: 56px; /* Adjust the top padding based on your navigation bar height */
-}
-.navbar {
-  padding: 0.5rem 1rem; /* Adjust the padding as needed */
+  background-attachment: fixed;
+  background-color: #2b2e38; /* Set the background color of the navbar */
+  padding: 0;
+  margin: 0; /* Add this line to remove any default margin */
+  background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #40444A 24px ), repeating-linear-gradient( #ffc10755, #ffc107 );
+  box-sizing: border-box;
 }
 
+
+/* Navbar styles */
+.navbar {
+  position: fixed; /* Fix the navbar at the top */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0.5rem 1rem; /* Adjust the padding as needed */
+  background-color: #fff; /* Set the background color of the navbar */
+  color: #fff; /* Set the text color of the navbar */
+}
+
+/* Sidebar styles */
 .sidebar {
   position: fixed;
   top: 0;
@@ -14,9 +32,7 @@ body {
   left: 0;
   z-index: 1000;
   padding-top: 56px; /* Adjust the top padding based on your navigation bar height */
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  background-color: #343a40; /* Dark blue background color */
+  background-color: #fff; /* Dark blue background color */
   color: #fff; /* Text color for the sidebar */
 }
 
@@ -35,10 +51,11 @@ body {
 }
 
 .sidebar .nav-item {
-  transition: all .3s ease-in-out;  /* Grow the menu item on hover */
+  transition: all .3s ease-in-out; /* Grow the menu item on hover */
 }
+
 .sidebar .nav-item:hover {
-  transform: scale(1.6); /* Grow the menu item on hover */
+  transform: scale(1.4); /* Grow the menu item on hover */
 }
 
 .sidebar .nav-item:hover .nav-link {
@@ -47,35 +64,35 @@ body {
 
 /* Adjust the main content area based on your layout */
 main {
-  padding: 15px;
-}
+  padding-top: 56px;
+  overflow: hidden;
+  }
 
 /* Responsive styles */
 @media (max-width: 768px) {
+  .navbar {
+    position: static; /* Change position to static for smaller screens */
+    width: 100%;
+    z-index: 1000;
+  }
+
   .sidebar {
-      position: static;
-      height: auto;
-      width: 100%;
-      padding-top: 15px; /* Adjust the top padding for smaller screens */
+    position: static;
+    height: auto;
+    width: 100%;
+    padding-top: 15px; /* Adjust the top padding for smaller screens */
   }
 
   .sidebar-sticky {
-      position: relative;
-      top: 0;
+    position: relative;
+    top: 0;
   }
 
   body {
-      padding-top: 0;
+    padding-top: 0;
   }
 
   main {
-      padding: 15px;
+    padding: 15px;
   }
-  .navbar {
-    position: static;
-    width: 100%;
-    z-index: 1000;
-}
-
-
 }
