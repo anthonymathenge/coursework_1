@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\Comment;
-
 class LikeController extends Controller
 {
     public function likePost(Request $request, Post $post)

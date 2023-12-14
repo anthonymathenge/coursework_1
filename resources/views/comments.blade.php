@@ -11,6 +11,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="media mt-3">
+                        <a class="pr-3" href="#"><img class="rounded-circle" alt="User Avatar" src="{{ $comment->user->avatarUrl }}" /></a>
+
                             <div class="media-body">
                             <div class="row">
                                 <div class="col-12 d-flex">
@@ -19,17 +21,7 @@
                                 </div>
                             </div>
                             <p>{{ $comment->content }}</p>
-                                    <div class="col-12 d-flex">
-                                        
-                                        <form action="{{ route('comment.destroy', $comment) }}" method="post" 
-                                            onsubmit="return confirm('Are you sure you want to delete this comment?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" style="border: none; background: none; cursor: pointer;">
-                                                <span style="font-size: 20px;">&#128465;</span>
-                                            </button>
-                                        </form>
-                                    </div>
+                                    
 
                                     <div class="like-container">
                                                     <button class="like-comment-btn" data-comment-id="{{ $comment->id }}"
@@ -41,6 +33,18 @@
                                                         {{ $comment->likes->count() }}
                                                     </span> Likes
                                                 </div>
+
+                                                <div class="col-12 d-flex">
+                                        
+                                        <form action="{{ route('comment.destroy', $comment) }}" method="post" 
+                                            onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                                <span style="font-size: 20px;">&#128465;</span>
+                                            </button>
+                                        </form>
+                                    </div>
 
                                 <!-- Add any other comment details you want to display -->
 

@@ -1,4 +1,15 @@
 /* Add your global styles here */
+.image-container .post-image {
+  width: 400px;
+  height: 200px;
+  border-radius: 8px;
+
+  /* Additional styling if needed */
+}
+.search-button {
+  outline-color: #ffc107;
+}
+
 html {
   padding: 0; /* Reset padding to remove unwanted white space */
 }

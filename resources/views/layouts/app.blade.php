@@ -59,6 +59,7 @@
                     </ul>
                 </div>
             </nav>
+            
             <!-- Main content section -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <!-- Toolbar at the top -->
@@ -69,7 +70,7 @@
                         </span>
                         <form class="form-inline">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search input" id="searchInput">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchUser()">
+                            <button class="btn btn-outline-success my-2 my-sm-0 " type="button" onclick="searchUser()">
                                 <i class="fas fa-search"></i>
                             </button>
                         </form>
@@ -113,13 +114,8 @@
 <script src="{{ asset('js/like.js') }}"></script>
 <script src="{{ asset('js/comment.js') }}"></script>
 <script>
-        function searchUser() {
-            var searchTerm = document.getElementById('searchInput').value;
-            if (searchTerm.trim() !== "") {
-                window.location.href = "{{ route('user.show', ':username') }}".replace(':username', searchTerm);
-            }
-        }
-    </script>
+        
+</script>
 
 
 </body>

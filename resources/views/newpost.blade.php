@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h1 class="mb-4">Create Post</h1>
-                        <form action="{{ route('newpost.store') }}" method="post">
+                        <form action="{{ route('newpost.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="title">Title:</label>
@@ -21,6 +21,14 @@
                                 <textarea class="form-control" name="content" rows="4" required></textarea>
                             </div>
 
+                            <div class="mt-4">
+                                <label for="image">Image:</label>
+                                <input type="file" name="image" />
+                                @error('image')
+                                    <div class="text-danger mt-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <button type="submit" class="btn btn-primary">Create Post</button>
                         </form>
                     </div>
@@ -29,4 +37,5 @@
         </div>
     </div>
 @endsection
+
 

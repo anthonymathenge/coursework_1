@@ -19,6 +19,7 @@ class PostsTableSeeder extends Seeder
         $p->user_id = 1;
         $p->title = "Sample Post";
         $p->content = "this is Sample Post content";
+        $p->image_url = 'storage/465-640x480.jpg';
         $p->save();
 
         Post::factory(6)->create();

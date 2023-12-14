@@ -20,6 +20,10 @@
                                     </div>
                                 </div>
                                 <h2>{{ $post->title }}</h2>
+                                <div class="image-container">
+                                    <img src="{{ asset( $post->image_url) }}" alt="Post Image" class="post-image">
+                                </div>
+
                                 <p>{{ $post->content }}</p>
 
                                 <!-- Like button for posts -->

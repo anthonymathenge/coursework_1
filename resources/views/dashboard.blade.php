@@ -20,10 +20,13 @@
                                             <div class="col-8 d-flex">
                                                 <h5><a href="{{ route('user.show', $user) }}">{{ $post->user->name }}</a></h5>
                                                 <span>- {{ $post->created_at->diffForHumans() }}</span>
-                                            </div>    
+                                            </div>
                                         </div>
+                                        <h2>{{ $post->title }}</h2>
+                                        <div class="image-container">
+                                            <img src="{{ asset(  $post->image_url) }}" alt="" class="post-image">
+                                        </div>                                        
                                         <p>{{ $post->content }}</p>
-
                                         <!-- Like button for posts -->
                                         <div class="like-container">
                                             <button class="like-post-btn" data-post-id="{{ $post->id }}" 

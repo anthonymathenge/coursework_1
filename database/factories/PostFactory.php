@@ -18,10 +18,23 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
+        $name = $this->faker->name();
+
+        // Get all image filenames from the public storage directory
+        $imageFilenames = scandir(public_path('storage'));
+
+        // Remove "." and ".." from the list
+        $imageFilenames = array_diff($imageFilenames, ['.', '..']);
+
+        // Randomly select an image filename
+        $randomImage = $imageFilenames[array_rand($imageFilenames)];
         return [
             'user_id' => User::factory(),
             'title' => fake()->sentence,
             'content' => fake()->paragraph,
+            'image_url' =>'storage/' . $randomImage,
+
         ];
     }
+    
 }
