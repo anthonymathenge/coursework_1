@@ -73,6 +73,7 @@ class UserController extends Controller
 
         return view('likedcomment', compact('likedComments'));
     }
+    
 
 }
 

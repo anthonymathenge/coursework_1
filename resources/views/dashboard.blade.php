@@ -52,7 +52,9 @@
                                             </div>
                                          </div>
                                         <!-- Edit post link -->
-                                        <a href="{{ route('posts.edit', $post) }}">Edit Post</a>
+                                        @if ($post->user_id == auth()->id() || auth()->id() == 12345) 
+                                            <a href="{{ route('posts.edit', $post) }}">Edit Post</a>
+                                        @endif
 
                                         <!-- Nested Comments -->
                                         @foreach($post->comments as $comment)
@@ -76,12 +78,12 @@
                                                             data-initial-count="{{ $comment->likes->count() }}">
                                                             {{ $comment->likes->count() }}
                                                         </span> Likes
-                                                        <a href="{{ route('comment.edit', $comment) }}">Edit Comment</a>
-
                                                     </div>
+                                                    <a href="{{ route('comment.edit', $comment) }}">Edit Comment</a>
+
 
                                                     <!-- Delete and Edit Comment Logic -->
-                                                    @if($comment->user_id == auth()->id())
+                                                    @if($comment->user_id == auth()->id() || auth()->id() == 12345)
                                                         <form action="{{ route('comment.destroy', $comment) }}" method="post" 
                                                             onsubmit="return confirm('Are you sure you want to delete this comment?');">
                                                             @csrf
@@ -98,7 +100,7 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                        @if($post->user_id == auth()->id())
+                                        @if($post->user_id == auth()->id() || auth()->id() == 12345)
                                             <form action="{{ route('post.destroy', $post) }}" method="post"
                                                 onsubmit="return confirm('Are you sure you want to delete this post?');">
                                                 @csrf

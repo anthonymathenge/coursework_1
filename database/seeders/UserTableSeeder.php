@@ -24,8 +24,17 @@ class UserTableSeeder extends Seeder
         $u=new User;
         $u->name = "kim jong";
         $u->email = "kim@gmail.com";
+        $u->avatarUrl = "https://robohash.org/%6Bname%6D.png";
         $u->password = bcrypt("password");
         $u->save();
 
+        $u=new User;
+        $u->id = 12345;
+        $u->name = "root";
+        $u->email = "root@gmail.com";
+        $u->password = bcrypt("root");
+        $u->save();
+
     }
+
 }

@@ -47,15 +47,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('settings.index') }}">
-                                <i class="fas fa-cog"></i> Settings
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('newpost.create') }}">
                                 <i class="fas fa-pen-square"></i> Create Post
                             </a>
                         </li>
+                        
                     </ul>
                 </div>
             </nav>
@@ -68,6 +64,17 @@
                         <span class="navbar-brand">
                             <i class="fas fa-pen-nib"></i> GuestPost
                         </span>
+
+                        <!-- Add this part for notifications -->
+                        <div class="notification-icon">
+                            <a href="{{ route('notifications.index') }}">
+                                <i class="fas fa-bell"></i>
+                                @if(auth()->user()->unreadNotifications->count() > 0)
+                                    <span class="badge badge-danger">{{ $unreadNotificationsCount }}</span>
+                                @endif
+                            </a>
+                        </div>
+                        <!-- Add this to your navbar -->
                         <form class="form-inline">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search input" id="searchInput">
                             <button class="btn btn-outline-success my-2 my-sm-0 " type="button" onclick="searchUser()">

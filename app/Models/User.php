@@ -66,8 +66,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Comment::class, 'likes', 'user_id', 'likeable_id')->where('likeable_type', Comment::class);
     }
-
-    
+    public function unreadnotifications()
+{
+    return $this->hasMany(Notification::class);
+}
 
 
 }

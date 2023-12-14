@@ -48,22 +48,31 @@
         </div>
 
         <div class="card mt-4">
-            <div class="card-header">
-                <h2>Badges and Achievements</h2>
-            </div>
-            <div class="card-body">
-                <!-- Display earned badges and achievements -->
-            </div>
+    <div class="card-header">
+        <h2>Badges and Achievements</h2>
+    </div>
+    <div class="card-body">
+        <!-- Sample Achievements -->
+        <div class="achievement">
+            <i class="fas fa-heart fa-3x"></i>
+            <p>Most Liked Post</p>
         </div>
 
-        <div class="card mt-4">
-            <div class="card-header">
-                <h2>User Preferences</h2>
-            </div>
-            <div class="card-body">
-                <!-- Allow users to customize their experience (language, font size, color scheme, etc.) -->
-            </div>
+        <div class="achievement">
+            <i class="fas fa-users fa-3x"></i>
+            <p>Most Users Interacted With</p>
         </div>
+
+        <div class="achievement">
+            <i class="fas fa-clock fa-3x"></i>
+            <p>Longest Screen Time</p>
+        </div>
+
+        <!-- Add more achievements as needed -->
+    </div>
+</div>
+
+
     </div>
 @endsection
 

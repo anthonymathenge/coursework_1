@@ -7,6 +7,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\NewPostController;
+use App\Http\Controllers\NotificationController;
 
 
 
@@ -73,6 +74,9 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/newpost', [NewPostController::class, 'create'])->name('newpost.create');
     Route::post('/newpost', [NewPostController::class, 'store'])->name('newpost.store');
+
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+
 
 
 
